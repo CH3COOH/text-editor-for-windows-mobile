@@ -61,12 +61,10 @@
             // menuOpen
             // 
             this.menuOpen.Text = "開く";
-            this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // menuSave
             // 
             this.menuSave.Text = "保存";
-            this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // menuItem3
             // 
@@ -85,12 +83,10 @@
             // menuCut
             // 
             this.menuCut.Text = "切り取り";
-            this.menuCut.Click += new System.EventHandler(this.menuCut_Click);
             // 
             // menuPaste
             // 
             this.menuPaste.Text = "貼り付け";
-            this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
             // 
             // textEdit
             // 
