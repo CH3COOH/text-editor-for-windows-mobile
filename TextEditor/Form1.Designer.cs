@@ -83,10 +83,12 @@
             // menuCut
             // 
             this.menuCut.Text = "切り取り";
+            this.menuCut.Click += new System.EventHandler(this.menuCut_Click);
             // 
             // menuPaste
             // 
             this.menuPaste.Text = "貼り付け";
+            this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
             // 
             // textEdit
             // 

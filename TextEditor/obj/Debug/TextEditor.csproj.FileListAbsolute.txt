@@ -6,3 +6,11 @@ C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\TextEditor\TextEditor\obj
 C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\TextEditor\TextEditor\obj\Debug\TextEditor.exe
 C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\TextEditor\TextEditor\obj\Debug\TextEditor.pdb
 C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\TextEditor\TextEditor\obj\Debug\TextEditor.TextEditorForm.resources
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\bin\Debug\TextEditor.exe
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\bin\Debug\TextEditor.pdb
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\obj\Debug\TextEditor.TextEditorForm.resources
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\obj\Debug\TextEditor.Properties.Resources.resources
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\obj\Debug\TextEditor.csproj.GenerateResource.Cache
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\obj\Debug\TextEditor.exe
+C:\Users\CH3COOH\Documents\Visual Studio 2008\Projects\Softbuild.TextEditor\Softbuild.TextEditor\TextEditor\obj\Debug\TextEditor.pdb
