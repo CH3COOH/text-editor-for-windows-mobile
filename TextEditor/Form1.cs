@@ -37,24 +37,30 @@ namespace TextEditor
             }
         }
 
+        private void CopyEx()
+        {
+            // エディットコントロール現在選択されているテキストを
+            // CF_TEXT フォーマットでクリップボードにコピー
+            int WM_COPY = 0x0301;
 
-        // エディットコントロールまたはコンボボックスにおいて、
-        // 現在選択されているテキストがある場合には、
-        // その部分のテキストをエディットコントロールから削除し、
-        // そのテキストを CF_TEXT フォーマットでクリップボードにコピーします。
-        int WM_CUT = 0x0300;
+            // メッセージの送信先になるtextEditのメッセージウィンドウの
+            // ハンドルに対して、WM_COPYの識別子を持つWindows メッセージの作成
+            Microsoft.WindowsCE.Forms.Message msg
+                = Microsoft.WindowsCE.Forms.Message.Create(textEdit.Handle,
+                                                           WM_COPY,
+                                                           IntPtr.Zero,
+                                                           IntPtr.Zero);
 
-        // エディットコントロールまたはコンボボックスの現在選択されているテキストを
-        // CF_TEXT フォーマットでクリップボードにコピーします。
-        int WM_COPY = 0x0301;
-
-        // エディットコントロールまたはコンボボックスの
-        // 現在のキャレットの位置にクリップボードの内容をコピーします。
-        int WM_PASTE = 0x0302;
-
+            // メッセージをパッシングしてメッセージを処理するまで待機
+            Microsoft.WindowsCE.Forms.MessageWindow.SendMessage(ref msg);
+        }
 
         private void menuCut_Click(object sender, EventArgs e)
         {
+            // エディットコントロールでテキストを現在選択されていれば
+            // その部分のテキストをエディットコントロールから削除し、
+            // CF_TEXT フォーマットでクリップボードにコピー
+            int WM_CUT = 0x0300;
 
             Microsoft.WindowsCE.Forms.Message msg
                 = Microsoft.WindowsCE.Forms.Message.Create(textEdit.Handle,
@@ -66,44 +72,16 @@ namespace TextEditor
 
         private void menuPaste_Click(object sender, EventArgs e)
         {
+            // エディットコントロールまたはコンボボックスの
+            // 現在のキャレットの位置にクリップボードの内容をコピーします。
+            int WM_PASTE = 0x0302;
+
             Microsoft.WindowsCE.Forms.Message msg
                 = Microsoft.WindowsCE.Forms.Message.Create(textEdit.Handle,
                                                            WM_PASTE,
                                                            IntPtr.Zero,
                                                            IntPtr.Zero);
             Microsoft.WindowsCE.Forms.MessageWindow.SendMessage(ref msg);
-        }
-
-        private void menuOpen_Click(object sender, EventArgs e)
-        {
-            // ファイルを開く為のダイアログを表示する
-            if (openFileDialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            // ユーザーが指定したファイルパスから
-            // テキストを読み込みTextBoxに表示させる
-            using (StreamReader strm = new StreamReader(openFileDialog.FileName))
-            {
-                textEdit.Text = strm.ReadToEnd();
-            }
-        }
-
-        private void menuSave_Click(object sender, EventArgs e)
-        {
-            // ファイルを保存する為のダイアログを表示する
-            if (saveFileDialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            // TextBoxに表示しているテキストを
-            // ユーザーが指定したファイルパスに書き出す
-            using (StreamWriter strm = new StreamWriter(saveFileDialog.FileName))
-            {
-                strm.Write(textEdit.Text);
-            }
         }
     }
 }
