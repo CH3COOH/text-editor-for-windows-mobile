@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.menuEdit = new System.Windows.Forms.MenuItem();
             this.menuOpen = new System.Windows.Forms.MenuItem();
@@ -41,6 +42,7 @@
             this.textEdit = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.inputPanel1 = new Microsoft.WindowsCE.Forms.InputPanel(this.components);
             this.SuspendLayout();
             // 
             // mainMenu
@@ -61,10 +63,12 @@
             // menuOpen
             // 
             this.menuOpen.Text = "開く";
+            this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // menuSave
             // 
             this.menuSave.Text = "保存";
+            this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // menuItem3
             // 
@@ -99,6 +103,7 @@
             this.textEdit.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textEdit.Size = new System.Drawing.Size(240, 268);
             this.textEdit.TabIndex = 0;
+            this.textEdit.TextChanged += new System.EventHandler(this.textEdit_TextChanged);
             // 
             // openFileDialog
             // 
@@ -107,6 +112,10 @@
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "テキストファイル(*.txt)|*.txt";
+            // 
+            // inputPanel1
+            // 
+            this.inputPanel1.EnabledChanged += new System.EventHandler(this.inputPanel1_EnabledChanged);
             // 
             // TextEditorForm
             // 
@@ -135,6 +144,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.MenuItem menuCut;
+        private Microsoft.WindowsCE.Forms.InputPanel inputPanel1;
     }
 }
 

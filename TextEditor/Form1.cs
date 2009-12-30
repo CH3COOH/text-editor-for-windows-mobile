@@ -83,5 +83,111 @@ namespace TextEditor
                                                            IntPtr.Zero);
             Microsoft.WindowsCE.Forms.MessageWindow.SendMessage(ref msg);
         }
+
+        /// <summary>
+        /// 現在のテキストが保存済みか判定用フラグ
+        /// </summary>
+        bool _isSavedFile = true;
+        bool isSavedFile
+        { 
+            get { return _isSavedFile; }
+            set { _isSavedFile = value; } 
+        }
+
+        private void menuSave_Click(object sender, EventArgs e)
+        {
+            // ファイルを保存する為のダイアログを表示する
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            {
+              return;
+            }
+
+            // TextBoxに表示しているテキストを
+            // ユーザーが指定したファイルパスに書き出す
+            using (StreamWriter strm = new StreamWriter(saveFileDialog.FileName))
+            {
+              strm.Write(textEdit.Text);
+            }
+
+            // 保存が完了したのでフラグにtrueを設定する
+            this.isSavedFile = true;
+        }
+
+
+        private void textEdit_TextChanged(object sender, EventArgs e)
+        {
+            // テキストが変更されたのでフラグにfalseを設定する
+            this.isSavedFile = false;
+        }
+
+        private void menuOpen_Click(object sender, EventArgs e)
+        {
+            // ファイルを保存済みか
+            if (!this.isSavedFile)
+            {
+                // 上書きの確認用の文言
+                System.Text.StringBuilder sb = new StringBuilder();
+                sb.Append("現在編集中のテキストが存在しています。\n");
+                sb.Append("現在のテキストを破棄して、新しく開きますか？");
+
+                // メッセージボックスの表示
+                DialogResult result = DialogResult.None;
+                result = MessageBox.Show(sb.ToString(),
+                                         "caption", 
+                                         MessageBoxButtons.YesNo, 
+                                         MessageBoxIcon.Asterisk, 
+                                         MessageBoxDefaultButton.Button2);
+
+                // 
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+
+            // ファイルを開く為のダイアログを表示する
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // ユーザーが指定したファイルパスから
+            // テキストを読み込みTextBoxに表示させる
+            using (StreamReader strm = new StreamReader(openFileDialog.FileName))
+            {
+                textEdit.Text = strm.ReadToEnd();
+            }
+        }
+
+        private void inputPanel1_EnabledChanged(object sender, EventArgs e)
+        {
+            // 現在のテキストボックスの高さを取得
+            int newHeight = textEdit.Height;
+
+            if (inputPanel1.Enabled)
+            {
+                // ソフトキーボードが表示されている
+
+                // テキストボックスの高さを設定するために
+                // Dockプロパティを上辺にのみ揃える
+                textEdit.Dock = DockStyle.Top;
+
+                // ソフトキーボードの高さを考慮して、
+                // 残った部分をテキストボックスの高さとする
+                newHeight = newHeight - inputPanel1.Bounds.Height;
+            }
+            else
+            {
+                // ソフトキーボードが表示されていない
+
+                // ソフトキーボードの事は考慮する必要がないので
+                // フォームの全ての辺とドッキングさせる。
+                textEdit.Dock = DockStyle.Fill;
+            }
+
+            // テキストボックスの高さを更新する
+            textEdit.Height = newHeight;
+        }
+
     }
 }
